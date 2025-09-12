@@ -19,4 +19,7 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('MiPrimeraPagina.urls')), #include es para incluir las urls de la app MiPrimeraPagina
 ]
+
+#python3 manage.py runserver
