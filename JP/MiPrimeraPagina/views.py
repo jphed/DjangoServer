@@ -66,3 +66,10 @@ def randomize(request):
     """
     return HttpResponse(html)
 
+
+def saludo(request, nombre="Mundo"):
+    """
+    Renderiza la plantilla de saludo pasando un nombre capitalizado.
+    Se usa junto con la ruta: /MiPrimeraPagina/saludo/<str:nombre>/
+    """
+    return render(request, "MiPrimeraPagina/saludo.html", {"nombre": nombre.capitalize()})
