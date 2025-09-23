@@ -73,3 +73,16 @@ def saludo(request, nombre="Mundo"):
     Se usa junto con la ruta: /MiPrimeraPagina/saludo/<str:nombre>/
     """
     return render(request, "MiPrimeraPagina/saludo.html", {"nombre": nombre.capitalize()})
+
+def index_html(request):
+    """
+    Renderiza la plantilla de índice en templates:
+    MiPrimeraPagina/templates/MiPrimeraPagina/index.html
+    """
+    return render(request, "MiPrimeraPagina/index.html")
+    
+def index1(request):
+    """
+    Renderiza la plantilla de índice (alias index1).
+    """
+    return render(request, "MiPrimeraPagina/index.html")

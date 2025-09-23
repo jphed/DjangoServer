@@ -6,4 +6,5 @@ urlpatterns = [
     path('add/', views.add, name='add'),
     path('random/', views.randomize, name='randomize'),
     path('saludo/<str:nombre>/', views.saludo, name='saludo'),
+    path('index1/', views.index1, name='index1'),
 ]
