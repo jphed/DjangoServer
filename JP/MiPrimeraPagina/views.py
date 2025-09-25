@@ -92,14 +92,17 @@ def about(request):
     Renderiza la página About.
     """
     return render(request, "MiPrimeraPagina/about.html")
-
 def sumar(request):
     """
     Suma dos números definidos dentro de la función (6 y 7) y renderiza la plantilla.
     URL: /MiPrimeraPagina/sumar/
     """
-    a = 6
-    b = 7
-    resultado = a + b
-    context = {"a": a, "b": b, "resultado": resultado}
-    return render(request, "MiPrimeraPagina/sumar.html", context)
+    resultado = 6 + 7
+    return render(request, 'MiPrimeraPagina/sumar.html', {'resultado': resultado})
+
+def indextest(request):
+    """
+    Renderiza la plantilla de prueba indextest.html
+    URL: /MiPrimeraPagina/indextest/
+    """
+    return render(request, 'MiPrimeraPagina/indextest.html')
