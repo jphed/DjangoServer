@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 import random
 from .models import Task
 
@@ -88,6 +89,13 @@ def index1(request):
     """
     return render(request, "MiPrimeraPagina/index.html")
 
+def index2(request):
+    """
+    Renderiza la plantilla index2.html
+    URL: /MiPrimeraPagina/index2/
+    """
+    return render(request, "MiPrimeraPagina/index2.html")
+
 def about(request):
     """
     Renderiza la página About.
@@ -107,3 +115,37 @@ def indextest(request):
     URL: /MiPrimeraPagina/indextest/
     """
     return render(request, 'MiPrimeraPagina/indextest.html')
+
+# ---------------------------
+# Tasks demo (memoria y admin)
+# ---------------------------
+# Lista en memoria (solo demo) para /tasks/
+tasks = ["foo", "bar", "baz"]
+
+def tasks_index(request):
+    """
+    Muestra la lista en memoria de tareas simples.
+    Template: MiPrimeraPagina/tasks_index.html
+    """
+    return render(request, "MiPrimeraPagina/tasks_index.html", {"tasks": tasks})
+
+def tasks_add(request):
+    """
+    Formulario para agregar una tarea a la lista en memoria.
+    - GET: muestra el formulario
+    - POST: agrega y redirige a tasks_index
+    """
+    if request.method == "POST":
+        task = request.POST.get("task")
+        if task:
+            tasks.append(task)
+        return HttpResponseRedirect(reverse("tasks_index"))
+    return render(request, "MiPrimeraPagina/tasks_add.html")
+
+def tasks_admin_list(request):
+    """
+    Lista las tareas del modelo Task ordenadas por fecha de creación desc.
+    Template: MiPrimeraPagina/tasks_admin_list.html
+    """
+    task_qs = Task.objects.all().order_by("-created_at")
+    return render(request, "MiPrimeraPagina/tasks_admin_list.html", {"tasks": task_qs})

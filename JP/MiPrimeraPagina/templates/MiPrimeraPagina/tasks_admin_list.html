@@ -1,0 +1,20 @@
+{% extends "MiPrimeraPagina/base.html" %}
+{% block content %}
+<div class="container py-4">
+  <h1 class="mb-4">Tasks from Admin</h1>
+  {% if tasks %}
+    <ul class="list-group mb-3">
+      {% for task in tasks %}
+        <li class="list-group-item">
+          {{ task.title }} <span class="text-muted">({{ task.created_at }})</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <ul class="list-group mb-3">
+      <li class="list-group-item text-muted">No tasks created in admin</li>
+    </ul>
+  {% endif %}
+  <a href="/admin/" class="btn btn-secondary">Go to Admin</a>
+</div>
+{% endblock %}
