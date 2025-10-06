@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 import random
-from .models import Task
+from .models import Task, Usuario
 
 # Create your views here.
 def index(request):
@@ -149,3 +149,11 @@ def tasks_admin_list(request):
     """
     task_qs = Task.objects.all().order_by("-created_at")
     return render(request, "MiPrimeraPagina/tasks_admin_list.html", {"tasks": task_qs})
+
+def usuarios_list(request):
+    """
+    Lista todos los usuarios del modelo Usuario ordenados por nombre.
+    Template: MiPrimeraPagina/usuarios_list.html
+    """
+    usuarios = Usuario.objects.all().order_by("nombre")
+    return render(request, "MiPrimeraPagina/usuarios_list.html", {"usuarios": usuarios})
